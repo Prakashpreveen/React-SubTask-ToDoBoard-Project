@@ -1,0 +1,62 @@
+#overlay {
+  position: fixed; /* Fixed position to cover entire viewport */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
+  z-index: 999; /* Ensure it sits above other content */
+}
+#newtask-form {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  background: black;
+  color: #fff;
+  border: 1px solid #fff;
+  border-radius: 20px;
+  width: 400px;
+  height: auto;
+  max-height: 700px;
+  overflow-y: hidden;
+  top: 20%;
+  left: calc(50% - 250px);
+  z-index: 1000;
+  padding: 30px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+  gap: 10px;
+}
+
+.project-name {
+  background: transparent;
+  width: 400px;
+  height: 50px;
+  font-size: 20px;
+  font-family: monospace;
+  border: 1px dashed grey;
+  color: #fff;
+}
+
+.project-desc {
+  background: transparent;
+  width: 400px;
+  height: 100px;
+  font-size: 20px;
+  font-family: monospace;
+  border: none;
+  border: 1px dashed grey;
+  color: #fff;
+}
+.subtaskBtn {
+  width: 54px;
+  margin-top: 10px;
+  background: #fff;
+  border: 1px solid grey;
+  border-radius: 10px;
+  color: black;
+}
+.subtaskBtn:hover {
+  left: 0;
+  background: black;
+  color: #fff;
+}

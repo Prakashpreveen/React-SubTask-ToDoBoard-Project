@@ -1,0 +1,64 @@
+#container {
+  display: flex; /* Use flexbox for layout */
+  height: 100vh; /* Full height of the viewport */
+}
+
+#top-navbar {
+  position: fixed; /* Keep it fixed at the top */
+  top: 0;
+  left: 0;
+  height: 150px; /* Fixed height for top navbar */
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  gap: 30%; /*Based on requirment change this gap*/
+  background: black;
+  color: #fff;
+  border-bottom: 1px solid #fff;
+  margin: 0;
+  width: 100%;
+  z-index: 1000; /* Ensure it stays on top */
+}
+
+#left-navbar {
+  position: fixed; /* Keep it fixed on the left */
+  top: 150px; /* Start below the top navbar */
+  left: 0;
+  width: 150px; /* Fixed width for left navbar */
+  height: calc(100vh - 150px); /* Full height minus top navbar height */
+  background: black;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+
+#main-content {
+  position: relative;
+  background: grey;
+  width: calc(100% - 150px);
+  height: 100%;
+  margin-left: 150px;
+  margin-top: 150px;
+}
+
+#newtaskbtn {
+  background: transparent;
+  color: grey;
+  border: 1px solid grey;
+  border-radius: 10px;
+  width: 150px;
+  height: 50px;
+  font-size: 25px;
+  cursor: pointer;
+  transition: background 0.3s, color 0.3s;
+}
+#newtaskbtn:hover {
+  background: grey;
+  color: black;
+}
+#newtaskbtn:active {
+  background: rgba(128, 128, 128, 0.5);
+}
