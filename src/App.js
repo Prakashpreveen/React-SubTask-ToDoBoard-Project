@@ -24,8 +24,9 @@ const App = () => {
       description: taskDescription,
       subTasks: newSubTasks.map((subtask) => ({
         name: subtask,
-        completed: false,
-      })), // Initialize completed state
+        completed: false, // Initialize completed state
+      })),
+      isVisible: true, // Track visibility
     };
     const updatedTasks = [...tasks, newTask]; // Add the new task to the array
     setTasks(updatedTasks); // Update state
@@ -43,8 +44,19 @@ const App = () => {
   // Function to toggle subtask completion
   const toggleSubTaskCompletion = (taskIndex, subIndex) => {
     const updatedTasks = [...tasks];
-    updatedTasks[taskIndex].subTasks[subIndex].completed =
-      !updatedTasks[taskIndex].subTasks[subIndex].completed; // Toggle completion state
+
+    if (updatedTasks[taskIndex] && updatedTasks[taskIndex].subTasks[subIndex]) {
+      updatedTasks[taskIndex].subTasks[subIndex].completed =
+        !updatedTasks[taskIndex].subTasks[subIndex].completed; // Toggle completion state
+      setTasks(updatedTasks);
+      localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(updatedTasks)); // Update local storage
+    }
+  };
+
+  // Function to toggle visibility of task details
+  const toggleVisibility = (index) => {
+    const updatedTasks = [...tasks];
+    updatedTasks[index].isVisible = !updatedTasks[index].isVisible; // Toggle visibility state
     setTasks(updatedTasks);
     localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(updatedTasks)); // Update local storage
   };
@@ -74,31 +86,52 @@ const App = () => {
         )}
         {tasks.map((task, taskIndex) => (
           <div key={taskIndex} id="todo-container">
-            <h1 style={{ fontSize: "40px", marginTop: "0px" }}>{task.name}</h1>
-            <p style={{ fontSize: "15px" }}>{task.description}</p>
+            <h1 style={{ fontSize: "40px", marginTop: "0px" }}>
+              <span>
+                <input
+                  type="checkbox"
+                  className="todo-checkbox"
+                  id={`task-${taskIndex}`}
+                  onChange={() => toggleVisibility(taskIndex)} // Toggle visibility on checkbox change
+                />
+                <label htmlFor={`task-${taskIndex}`}>{task.name}</label>
+              </span>
+            </h1>
+
+            {/* Conditionally render task details based on visibility */}
+            {task.isVisible && (
+              <>
+                <p style={{ fontSize: "15px" }}>{task.description}</p>
+
+                <Timer />
+                {task.subTasks.length > 0 && (
+                  <ul className="subtask-value">
+                    {task.subTasks.map((subtask, subIndex) => (
+                      <li key={subIndex}>
+                        <input
+                          type="checkbox"
+                          id={`subtask-${taskIndex}-${subIndex}`}
+                          checked={subtask.completed}
+                          onChange={() =>
+                            toggleSubTaskCompletion(taskIndex, subIndex)
+                          }
+                        />
+                        <label
+                          htmlFor={`subtask-${taskIndex}-${subIndex}`}
+                          className={subtask.completed ? "completed" : ""}
+                        >
+                          {subtask.name}
+                        </label>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </>
+            )}
+
             <span className="spanBtn" onClick={() => deleteTask(taskIndex)}>
               DELETE
             </span>
-            <Timer />
-            {task.subTasks.length > 0 && (
-              <ul className="subtask-value">
-                {task.subTasks.map((subtask, subIndex) => (
-                  <li key={subIndex}>
-                    <input
-                      type="checkbox"
-                      id={`subtask-${taskIndex}-${subIndex}`}
-                      checked={subtask.completed}
-                      onChange={() =>
-                        toggleSubTaskCompletion(taskIndex, subIndex)
-                      }
-                    />
-                    <label htmlFor={`subtask-${taskIndex}-${subIndex}`}>
-                      {subtask.name}
-                    </label>
-                  </li>
-                ))}
-              </ul>
-            )}
           </div>
         ))}
       </div>

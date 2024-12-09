@@ -89,10 +89,6 @@
   font-size: 15px; /* Task Description Size */
   word-wrap: break-word; /* Ensure long descriptions wrap */
 }
-/* #todo-container h2 {
-  font-size: 24px;
-  color: #fff;
-} */
 
 #todo-container button {
   margin: 5px;
@@ -111,6 +107,52 @@
 #todo-container:hover {
   border: 2px solid #fff;
   box-shadow: rgba(0, 0, 0, 0.5) 0px 4px 8px;
+}
+.todo-checkbox {
+  display: none; /* Hide the default checkbox */
+}
+
+/* Style for the custom checkbox appearance */
+.todo-checkbox + label {
+  position: relative;
+  padding-left: 30px; /* Space for custom checkbox */
+  cursor: pointer; /* Pointer cursor on hover */
+  font-size: 24px; /* Font size for task name */
+}
+
+/* Custom checkbox appearance */
+.todo-checkbox + label::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px; /* Width of custom checkbox */
+  height: 20px; /* Height of custom checkbox */
+  border: 2px solid #444; /* Border color */
+  background-color: white; /* Background color when unchecked */
+  border-radius: 4px; /* Rounded corners */
+}
+
+/* Style for checked custom checkboxes */
+.todo-checkbox:checked + label::before {
+  background-color: #fff; /* Background color when checked */
+  border-color: green; /* Border color when checked */
+}
+
+/* Checkmark appearance */
+.todo-checkbox:checked + label::after {
+  content: "✔"; /* Checkmark character */
+  position: absolute;
+  left: 3px;
+  top: -15px; /* Positioning of checkmark */
+  font-size: 30px; /* Size of checkmark */
+  color: green; /* Color of checkmark */
+  font-size: 35px;
+}
+.completed {
+  text-decoration: line-through; /* Strikethrough effect */
+  color: grey; /* Optional: Change color of completed tasks */
 }
 .spanBtn {
   position: absolute;

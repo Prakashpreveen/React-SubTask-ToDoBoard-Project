@@ -1,16 +1,11 @@
 import React, { useState, useEffect } from "react";
 import "./Timer.css"; // Optional: Create a CSS file for styling
-// import CustomPopup from "./CustomPopup"; // Import the CustomPopup component
 
 const Timer = () => {
   const [hours, setHours] = useState(0);
   const [minutes, setMinutes] = useState(0);
   const [seconds, setSeconds] = useState(0);
   const [isActive, setIsActive] = useState(false);
-
-  // State for popup visibility and message
-  // const [showPopup, setShowPopup] = useState(false);
-  // const [popupMessage, setPopupMessage] = useState(""); // To hold the message for popup
 
   useEffect(() => {
     let interval = null;
@@ -28,7 +23,6 @@ const Timer = () => {
         } else {
           clearInterval(interval); // Stop when time is up
           setIsActive(false);
-          // setShowPopup(true); // Show popup when time is up
         }
       }, 1000);
     }
@@ -50,42 +44,6 @@ const Timer = () => {
     setHours(0);
     setMinutes(0);
     setSeconds(0);
-    // setShowPopup(false); // Close popup on reset
-    // setPopupMessage(""); // Clear message on reset
-  };
-
-  // const handleFinished = () => {
-  //   setPopupMessage(<h2 style={{ color: "green" }}>WELLDONE !</h2>); // Set encouraging message
-  //   // Optionally close the popup after a short delay
-  //   setTimeout(() => {
-  //     setShowPopup(false); // Close popup after showing message
-  //     handleReset(); // Reset timer after closing popup
-  //   }, 2000); // Adjust delay as needed
-  // };
-
-  // const handleNotFinished = () => {
-  //   setPopupMessage(<h2 style={{ color: "red" }}>KEEP PUSHING !</h2>); // Set message for not finished
-  //   // Optionally close the popup after a short delay
-  //   setTimeout(() => {
-  //     setShowPopup(false); // Close popup after showing message
-  //     handleReset(); // Reset timer after closing popup
-  //   }, 2000); // Adjust delay as needed
-  // };
-
-  const handleAddTime = () => {
-    // Add extra time to the timer
-    if (minutes + hours * 60 < 55) {
-      // Ensure total time does not exceed a reasonable limit
-      if (minutes + hours * 60 + 5 >= 60) {
-        const newHours = Math.floor((minutes + hours * 60 + 5) / 60);
-        const newMinutes = (minutes + hours * 60 + 5) % 60;
-        setHours(hours + newHours);
-        setMinutes(newMinutes);
-      } else {
-        setMinutes(minutes + 5);
-      }
-      // setShowPopup(false); // Close popup after adding time
-    }
   };
 
   return (
