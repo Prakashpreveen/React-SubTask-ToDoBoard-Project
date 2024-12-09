@@ -16,11 +16,10 @@
   border: 1px solid #fff;
   border-radius: 20px;
   width: 400px;
-  height: auto;
-  max-height: 700px;
-  overflow-y: hidden;
+  max-height: 600px;
+  overflow-x: hidden;
   top: 20%;
-  left: calc(50% - 250px);
+  left: calc(50% - 200px);
   z-index: 1000;
   padding: 30px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
@@ -35,6 +34,7 @@
   font-family: monospace;
   border: 1px dashed grey;
   color: #fff;
+  min-height: 50px;
 }
 
 .project-desc {
@@ -46,6 +46,10 @@
   border: none;
   border: 1px dashed grey;
   color: #fff;
+  min-height: 100px;
+
+  min-width: 400px;
+  max-width: 400px;
 }
 .subtaskBtn {
   width: 54px;
@@ -59,4 +63,22 @@
   left: 0;
   background: black;
   color: #fff;
+}
+.addtaskBtn {
+  height: 40px;
+  width: 400px;
+  background: #fff;
+  border: none;
+  border-radius: 20px;
+  transition: background 0.4s, color 0.4s;
+  cursor: pointer;
+}
+.addtaskBtn:hover {
+  background: black;
+  color: #fff;
+  border: 1px solid #fff;
+}
+.addtaskBtn:active {
+  background: #333;
+  opacity: 1;
 }
