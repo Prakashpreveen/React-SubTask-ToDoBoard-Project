@@ -8,11 +8,12 @@ const NewTask = ({
   setTaskName,
   taskDescription,
   setTaskDescription,
+  newSubTasks,
+  setNewSubTasks,
+  setShowToDo,
 }) => {
   const MyRef = useRef();
-
-  const [newSubTasks, setNewSubTasks] = useState([]);
-  const [isFormVaild, setIsFormValid] = useState(true);
+  const [isFormValid, setIsFormValid] = useState(true);
 
   useEffect(() => {
     MyRef.current.focus();
@@ -28,11 +29,9 @@ const NewTask = ({
       setIsFormValid(false);
       return;
     } else {
-      setTaskName("");
-      setTaskDescription("");
-      setNewSubTasks([]);
       setNewTask(false);
       setIsFormValid(true);
+      setShowToDo(true);
     }
   };
 
@@ -49,7 +48,7 @@ const NewTask = ({
           onChange={(e) => setTaskName(e.target.value.toUpperCase())}
           required
           style={{
-            borderColor: isFormVaild || taskName.trim() ? "grey" : "red",
+            borderColor: isFormValid || taskName.trim() ? "grey" : "red",
           }}
         />
         <textarea
@@ -58,7 +57,7 @@ const NewTask = ({
           value={taskDescription}
           onChange={(e) => setTaskDescription(e.target.value)}
           style={{
-            borderColor: isFormVaild || taskDescription.trim() ? "grey" : "red",
+            borderColor: isFormValid || taskDescription.trim() ? "grey" : "red",
           }}
         />
         <>

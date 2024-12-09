@@ -62,3 +62,91 @@
 #newtaskbtn:active {
   background: rgba(128, 128, 128, 0.5);
 }
+
+#todo-container {
+  position: relative;
+  background: #333;
+  font-family: monospace;
+  color: #fff;
+  margin-left: 20px;
+  margin-top: 20px;
+  width: 500px;
+  padding: 20px;
+  overflow: auto;
+  border-radius: 20px;
+  border: 2px solid transparent;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+#todo-container:hover {
+  border: 2px solid #fff;
+  box-shadow: rgba(0, 0, 0, 0.5) 0px 4px 8px;
+}
+
+.subtask-value {
+  color: #fff;
+  padding: 10px;
+  margin-top: 10px;
+}
+
+.subtask-value {
+  color: #fff; /* Text color for subtasks */
+  padding: 10px; /* Padding inside subtask list */
+  margin-top: 10px; /* Space above subtask list */
+}
+
+.subtask-value li {
+  display: flex; /* Use flexbox to align items */
+  align-items: center; /* Center align items vertically */
+  padding: 5px;
+}
+
+/* Hide the default checkbox */
+.subtask-value input[type="checkbox"] {
+  display: none; /* Hide default checkbox */
+}
+
+/* Style for the custom checkbox */
+.subtask-value input[type="checkbox"] + label {
+  position: relative;
+  padding-left: 30px; /* Space for custom checkbox */
+  cursor: pointer; /* Change cursor on hover */
+  font-size: 20px; /* Font size for labels */
+}
+
+/* Custom checkbox appearance */
+.subtask-value input[type="checkbox"] + label::before {
+  content: "";
+  position: absolute;
+  padding: 1px;
+
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px; /* Size of custom checkbox */
+  height: 20px; /* Size of custom checkbox */
+  border: 2px solid black; /* Border color for custom checkbox */
+  background-color: #fff; /* Background color when unchecked */
+}
+
+/* Style for checked custom checkboxes */
+.subtask-value input[type="checkbox"]:checked + label::before {
+  background-color: green; /* Background color when checked */
+}
+
+/* Change label color and add line-through for checked state */
+.subtask-value input[type="checkbox"]:checked + label {
+  text-decoration: line-through; /* Line through text when checked */
+  text-decoration-color: green; /* Change line-through color to red */
+  text-decoration-thickness: 3px;
+  color: #fff; /* Keep label text color black when checked */
+}
+
+/* Change the checkmark color inside the custom checkbox (using ::after) */
+.subtask-value input[type="checkbox"]:checked + label::after {
+  content: "✔"; /* Checkmark character */
+  position: absolute;
+  left: 5px;
+  top: -12px;
+  font-size: 28px; /* Adjust size of checkmark as needed */
+}
