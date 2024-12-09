@@ -2,14 +2,14 @@ import React from "react";
 import "./SubTask.css";
 
 function SubTask({ newSubTasks, setNewSubTasks }) {
-  // HANDLE NEW-SUBTASK:
+  // Handle changes to a subtask input field
   const handleSubTaskChange = (index, value) => {
     const updatedSubTasks = [...newSubTasks];
     updatedSubTasks[index] = value;
     setNewSubTasks(updatedSubTasks);
   };
 
-  // DELETING SUBTASK:
+  // Deleting a subtask
   const handleDeleteSubTask = (index) => {
     const updatedSubTasks = newSubTasks.filter((_, i) => i !== index);
     setNewSubTasks(updatedSubTasks);
@@ -18,14 +18,27 @@ function SubTask({ newSubTasks, setNewSubTasks }) {
   return (
     <div>
       {newSubTasks.map((subTask, index) => (
-        <div id="subtask-container">
+        <div
+          key={index}
+          id="subtask-container"
+          style={{
+            display: "flex",
+            alignItems: "center",
+            marginBottom: "10px",
+          }}
+        >
           <input
-            key={index}
-            placeholder={`SubTask - ${index + 1}`}
+            placeholder={`Sub Task - ${index + 1}`}
             value={subTask}
             onChange={(e) => handleSubTaskChange(index, e.target.value)}
+            style={{ marginRight: "10px" }}
           />
-          <span onClick={() => handleDeleteSubTask(index)}>Delete</span>
+          <span
+            onClick={() => handleDeleteSubTask(index)}
+            style={{ cursor: "pointer", color: "red" }}
+          >
+            Delete
+          </span>
         </div>
       ))}
     </div>

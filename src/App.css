@@ -39,7 +39,7 @@
   position: relative;
   background: grey;
   width: calc(100% - 150px);
-  height: 100%;
+  height: calc(100vh -150px);
   margin-left: 150px;
   margin-top: 150px;
 }
@@ -64,54 +64,103 @@
 }
 
 #todo-container {
+  display: block;
   position: relative;
   background: #333;
   font-family: monospace;
   color: #fff;
-  margin-left: 20px;
+  margin-left: 30%;
   margin-top: 20px;
   width: 500px;
   padding: 20px;
-  overflow: auto;
+  overflow: hidden;
   border-radius: 20px;
   border: 2px solid transparent;
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  word-wrap: break-word;
+}
+#todo-container h1 {
+  font-size: 40px; /* Project Name Size */
+  margin-top: 0; /* No top margin for h1 */
+  word-wrap: break-word; /* Ensure long titles wrap */
+}
+
+#todo-container p {
+  font-size: 15px; /* Task Description Size */
+  word-wrap: break-word; /* Ensure long descriptions wrap */
+}
+/* #todo-container h2 {
+  font-size: 24px;
+  color: #fff;
+} */
+
+#todo-container button {
+  margin: 5px;
+  padding: 10px;
+  background-color: #444;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#todo-container button:hover {
+  background-color: #555; /* Darker background on hover */
 }
 
 #todo-container:hover {
   border: 2px solid #fff;
   box-shadow: rgba(0, 0, 0, 0.5) 0px 4px 8px;
 }
+.spanBtn {
+  position: absolute;
+  color: red;
+  font-weight: bold;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+  z-index: 500;
+}
+.spanBtn:hover {
+  border-bottom: 1px solid red;
+}
+
+#todo-timer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid #fff;
+  border-radius: 20px;
+}
 
 .subtask-value {
+  display: flex;
+  flex-direction: column;
   color: #fff;
   padding: 10px;
   margin-top: 10px;
-}
-
-.subtask-value {
-  color: #fff; /* Text color for subtasks */
-  padding: 10px; /* Padding inside subtask list */
-  margin-top: 10px; /* Space above subtask list */
+  align-items: start;
 }
 
 .subtask-value li {
-  display: flex; /* Use flexbox to align items */
-  align-items: center; /* Center align items vertically */
-  padding: 5px;
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  word-break: break-all;
 }
 
 /* Hide the default checkbox */
 .subtask-value input[type="checkbox"] {
-  display: none; /* Hide default checkbox */
+  display: none;
 }
 
 /* Style for the custom checkbox */
 .subtask-value input[type="checkbox"] + label {
   position: relative;
-  padding-left: 30px; /* Space for custom checkbox */
-  cursor: pointer; /* Change cursor on hover */
-  font-size: 20px; /* Font size for labels */
+  padding-left: 30px;
+  cursor: pointer;
+  font-size: 20px;
 }
 
 /* Custom checkbox appearance */
@@ -119,34 +168,33 @@
   content: "";
   position: absolute;
   padding: 1px;
-
   left: 0;
   top: 50%;
   transform: translateY(-50%);
-  width: 20px; /* Size of custom checkbox */
-  height: 20px; /* Size of custom checkbox */
-  border: 2px solid black; /* Border color for custom checkbox */
-  background-color: #fff; /* Background color when unchecked */
+  width: 20px;
+  height: 20px;
+  border: 2px solid black;
+  background-color: #fff;
 }
 
 /* Style for checked custom checkboxes */
 .subtask-value input[type="checkbox"]:checked + label::before {
-  background-color: green; /* Background color when checked */
+  background-color: green;
 }
 
 /* Change label color and add line-through for checked state */
 .subtask-value input[type="checkbox"]:checked + label {
-  text-decoration: line-through; /* Line through text when checked */
-  text-decoration-color: green; /* Change line-through color to red */
+  text-decoration: line-through;
+  text-decoration-color: green;
   text-decoration-thickness: 3px;
-  color: #fff; /* Keep label text color black when checked */
+  color: #fff;
 }
 
 /* Change the checkmark color inside the custom checkbox (using ::after) */
 .subtask-value input[type="checkbox"]:checked + label::after {
-  content: "✔"; /* Checkmark character */
+  content: "";
   position: absolute;
   left: 5px;
   top: -12px;
-  font-size: 28px; /* Adjust size of checkmark as needed */
+  font-size: 28px;
 }

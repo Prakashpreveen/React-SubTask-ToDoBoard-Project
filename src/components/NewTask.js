@@ -2,18 +2,12 @@ import React, { useState, useRef, useEffect } from "react";
 import "./NewTask.css";
 import SubTask from "./SubTask";
 
-const NewTask = ({
-  taskName,
-  setNewTask,
-  setTaskName,
-  taskDescription,
-  setTaskDescription,
-  newSubTasks,
-  setNewSubTasks,
-  setShowToDo,
-}) => {
+const NewTask = ({ addTask, setNewTask }) => {
   const MyRef = useRef();
   const [isFormValid, setIsFormValid] = useState(true);
+  const [taskName, setTaskName] = useState("");
+  const [taskDescription, setTaskDescription] = useState("");
+  const [newSubTasks, setNewSubTasks] = useState([]);
 
   useEffect(() => {
     MyRef.current.focus();
@@ -29,9 +23,11 @@ const NewTask = ({
       setIsFormValid(false);
       return;
     } else {
-      setNewTask(false);
+      addTask(taskName, taskDescription, newSubTasks); // Call addTask passed from App
       setIsFormValid(true);
-      setShowToDo(true);
+      setTaskName(""); // Clear input fields after adding
+      setTaskDescription("");
+      setNewSubTasks([]);
     }
   };
 
